@@ -84,7 +84,7 @@ Now let's test this configuration. Just for the sake of simplicity we are not
 using an external IP for this lab, so we are going to port-forward the pod
 in order to be able to access it locally.
 
-=> In time, notice that this example won't make complete sense since any
+> In time, notice that this example won't make complete sense since any
 application deployed inside the cluster can bypass Envoy and access your backend
 service directly. If you want to protect intra-cluster communication one option is
 to deploy Envoy as a [proxy amabassador](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/#example-2-ambassador-containers)
@@ -145,6 +145,6 @@ Hostname: backend-app-5d8d977f96-78k2b
 [...]
 ```
 
-https://jwt.io/introduction/
-https://cloud.google.com/endpoints/docs/openapi/service-account-authentication
-https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/jwt_authn/v3/config.proto
+* https://jwt.io/introduction
+* https://cloud.google.com/endpoints/docs/openapi/service-account-authentication
+* https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/jwt_authn/v3/config.proto
