@@ -17,6 +17,28 @@ validated against Google remote jwks.
 We configure an [Envoy HTTP Filter](https://www.envoyproxy.io/docs/envoy/latest/api-v3/extensions/filters/http/jwt_authn/v3/config.proto)
 to perform [JWT Authentication](https://jwt.io/introduction/) using [Google service accounts](https://cloud.google.com/endpoints/docs/openapi/service-account-authentication).
 
+```yaml
+- name: envoy.filters.http.jwt_authn
+  typed_config:
+    "@type": type.googleapis.com/envoy.config.filter.http.jwt_authn.v2alpha.JwtAuthentication
+    providers:
+      provider_jwt-example:
+        issuer: jwt-example@your_gcp_project.iam.gserviceaccount.com
+        audiences:
+        - jwt-example.backend-app
+        remote_jwks:
+          http_uri:
+            uri: https://www.googleapis.com/service_accounts/v1/jwk/jwt-example@your_gcp_project.iam.gserviceaccount.com
+            cluster: provider_cluster
+            timeout:
+              seconds: 5
+          cache_duration:
+            seconds: 300
+    rules:
+    - match: { prefix: / }
+    requires: { provider_name: provider_jwt-example }
+```
+
 In practice, it will allow securing service-to-service communication while leveraging
 the Google infrastructure support. It can be an option to replace [ESPs](https://cloud.google.com/endpoints/docs/openapi/specify-proxy-startup-options).
 
