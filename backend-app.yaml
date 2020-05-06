@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-app
+  namespace: backend
+spec:
+  clusterIP: None
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+    protocol: TCP
+  selector:
+    name: backend-app
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-app
+  namespace: backend
+  labels:
+    name: backend-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: backend-app
+  template:
+    metadata:
+      labels:
+        name: backend-app
+    spec:
+      containers:
+      - image: gcr.io/google_containers/echoserver:1.8
+        name: backend-app
+        ports:
+        - name: http
+          containerPort: 8080

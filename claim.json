@@ -1,0 +1,6 @@
+{
+  "iss": "jwt-example@your_gcp_project.iam.gserviceaccount.com",
+  "sub": "jwt-example",
+  "name": "I am a client",
+  "aud": "jwt-example.backend-app"
+}
