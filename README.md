@@ -109,8 +109,7 @@ in order to be able to access it locally.
 > In time, notice that this example won't make complete sense since any
 application deployed inside the cluster can bypass Envoy and access your backend
 service directly. If you want to protect intra-cluster communication one option is
-to deploy Envoy as a [proxy amabassador](https://kubernetes.io/blog/2015/06/the-distributed-system-toolkit-patterns/#example-2-ambassador-containers)
-(some people like to say a sidecar) in your backend app's pod.
+to deploy Envoy as a sidecar in your backend app's pod.
 
 ```bash
 $ kubectl --n backend port-forward backend-envoy-559c97f657-5wqsc 8081:80
